@@ -85,7 +85,7 @@ namespace CustomerService.Controllers
         [ProducesResponseType(200, Type = typeof(List<Customer>))]
         public async Task<IActionResult> GetCustomersAsync(string filter)
         {
-            if (filter == null) return BadRequest("Filter empty");
+            if (string.IsNullOrWhiteSpace(filter)) return BadRequest("Filter empty");
 
             var customers = await _customerRepository.GetCustomersAsync(filter);
             return Ok(customers);
